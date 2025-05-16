@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const connectToDb = require("./src/config/db");
 const { googleRouter } = require("./src/routes/authGoogle");
 const { authRouter } = require("./src/routes/authRoutes");
+const profileRouter = require("./src/routes/profileRoutes");
 require('./src/config/passport'); //  Google strategy
 
 // Middleware
@@ -24,6 +25,7 @@ app.use(cors({
 // Routes
 app.use("/api/auth", authRouter);
 app.use('/api/auth' , googleRouter)
+app.use('/api/profile' , profileRouter)
 
 
 // MongoDB Connection;

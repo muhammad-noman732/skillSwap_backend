@@ -19,7 +19,7 @@ googleRouter.get('/google/callback', passport.authenticate('google', {
 //   Agar success hua, to req.user ke andar user ka data aa chuka hota ha
   (req, res) => {
     //  generate jwt token
-    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: req.user._id }, process.env.SECRET_KEY , {
         expiresIn: '1d'
       });
     
@@ -31,12 +31,15 @@ googleRouter.get('/google/callback', passport.authenticate('google', {
     maxAge: 3600000,
   });
 
-  res.redirect('/login-success');
+     // Redirect to frontend home after successful login
+    res.redirect('http://localhost:5173/');// 👈 redirect to React frontend
     
   })
 
 
 
   module.exports = { googleRouter}
+
+  
 
   

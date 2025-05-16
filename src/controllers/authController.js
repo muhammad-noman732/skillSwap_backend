@@ -77,6 +77,7 @@ const loginUser = async (req, res) => {
       });
     }
 
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
@@ -88,14 +89,15 @@ const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({
-        message: "Invalid credentials",
+        message: "Incorrect Password",
         status: "error",
       });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY , {
       expiresIn: "1d",
     });
+    console.log('TOKEN IN LOGIN' , token)
 
     // Set cookie securely
     res.cookie("token", token, {

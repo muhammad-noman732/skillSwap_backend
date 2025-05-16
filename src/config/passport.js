@@ -4,7 +4,7 @@ const User = require("../models/UserModal");
 
 //  google config strategy
 passport.use(new GoogleStrategy({
-  // jb user login kre ga to wha se google user callbackurl ki trf redirect krege with profile and token
+  // jb user login kre ga to wha se google user callbackurl ki trf redirect krega with profile and token
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL  
